@@ -560,8 +560,9 @@ static void xfrm_aead_print(struct xfrm_algo_aead *algo, int len,
 {
 	struct {
 		struct xfrm_algo algo;
-		char key[algo->alg_key_len / 8];
+		char *key;
 	} base;
+	key=(char*)alloca(algo->alg_key_len/8);
 
 	memcpy(base.algo.alg_name, algo->alg_name, sizeof(base.algo.alg_name));
 	base.algo.alg_key_len = algo->alg_key_len;
